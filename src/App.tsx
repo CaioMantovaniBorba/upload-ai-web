@@ -10,6 +10,8 @@ import { VideoInputForm } from './components/video-input-form';
 import { PromptSelect } from './components/prompt-select';
 
 export function App() {
+  const [temperature, setTemperature] = useState(0.5);
+
   function handlePromptSelected(template: string) {
     console.log(template);
   }
@@ -82,6 +84,8 @@ return (
                 min={0}
                 max={1}
                 step={0.1}
+                value={[temperature]}
+                onValueChange={value => setTemperature(value[0])}
               />
 
               <span className="block text-xs text-muted-foreground italic leading-relaxed">Valores mais altos tendem a deixar o resultado mais criativo e com possíveis erros.</span>
