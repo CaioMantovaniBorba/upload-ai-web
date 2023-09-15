@@ -11,6 +11,7 @@ import { PromptSelect } from './components/prompt-select';
 
 export function App() {
   const [temperature, setTemperature] = useState(0.5);
+  const [videoId, setVideoId] = useState<string | null>(null);
 
   function handlePromptSelected(template: string) {
     console.log(template);
@@ -53,7 +54,7 @@ return (
         </div>
 
         <aside className="w-80 space-y-6 ">
-          <VideoInputForm />
+          <VideoInputForm onVideoUploaded={setVideoId} /> 
 
           <Separator />
 
