@@ -1,6 +1,5 @@
 import { Github, Wand2 } from 'lucide-react';
 import { useState } from 'react';
-
 import { Button } from "./components/ui/button";
 import { Separator } from "./components/ui/separator";
 import { Textarea } from "./components/ui/textarea";
@@ -8,14 +7,29 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '.
 import { Slider } from './components/ui/slider';
 import { VideoInputForm } from './components/video-input-form';
 import { PromptSelect } from './components/prompt-select';
+import { useCompletion } from 'ai/react';
 
 export function App() {
   const [temperature, setTemperature] = useState(0.5);
   const [videoId, setVideoId] = useState<string | null>(null);
 
-  function handlePromptSelected(template: string) {
-    console.log(template);
-  }
+  const {
+    input,
+    setInput,
+    handleInputChange,
+    handleSubmit,
+    completion,
+    isLoading,
+  } = useCompletion({
+    api: 'http://localhost:3333/ai/complete',
+    body: {
+      videoId,
+      temperature,
+    },
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
 
 return (
     <div className="min-h-screen flex flex-col">
@@ -40,10 +54,13 @@ return (
             <Textarea
               className="resize-none p-4 leading-relaxed"
               placeholder='Inclua o promp para IA...'
+              value={input}
+              onChange={handleInputChange}
             />
             <Textarea
               className="resize-none p-4 leading-relaxed"
               placeholder='Resultado gerado pela IA...'
+              value={completion}
               readOnly
             />
           </div>
@@ -58,10 +75,10 @@ return (
 
           <Separator />
 
-          <form action="" className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <label htmlFor="">Prompt</label>
-              <PromptSelect onPromptSelected={handlePromptSelected}/>
+              <PromptSelect onPromptSelected={setInput}/>
             </div>
 
             <div className="space-y-2">
@@ -94,7 +111,7 @@ return (
 
             <Separator />
 
-            <Button type="submit" className="w-full">
+            <Button disabled={isLoading} type="submit" className="w-full">
               Executar
               <Wand2 className="w-4 h-4 ml-2" />
             </Button>
