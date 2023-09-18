@@ -1,3 +1,5 @@
+![screenshot](https://github.com/CaioMantovaniBorba/upload-ai-web/assets/38335770/018e9f80-d5ed-4eea-a07a-0b0092fdcd9d)
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
