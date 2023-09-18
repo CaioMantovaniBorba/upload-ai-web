@@ -31,13 +31,13 @@ export function App() {
     }
   });
 
-return (
+  return (
     <div className="min-h-screen flex flex-col">
       <div className="px-6 py-3 flex items-center justify-between border-b">
         <h1 className="text-xl font-bold">Upload.ui</h1>
 
         <div className="flex items-center gap-3">
-          <span className="text-sm text-muted-foreground">Desenvolvido por Caio</span>
+          <span className="text-sm text-muted-foreground">Desenvolvido por Caio Mantovani Borba</span>
 
           <Separator orientation='vertical' className="h-6" />
 
@@ -71,14 +71,14 @@ return (
         </div>
 
         <aside className="w-80 space-y-6 ">
-          <VideoInputForm onVideoUploaded={setVideoId} /> 
+          <VideoInputForm onVideoUploaded={setVideoId} />
 
           <Separator />
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <label htmlFor="">Prompt</label>
-              <PromptSelect onPromptSelected={setInput}/>
+              <PromptSelect onPromptSelected={setInput} />
             </div>
 
             <div className="space-y-2">
